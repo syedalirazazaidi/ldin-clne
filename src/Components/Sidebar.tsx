@@ -158,6 +158,7 @@ const HeaderAvatar = styled(Avatar)`
 const SidebarContainer = styled.div`
   position: sticky;
   top: 90;
+  margin-top: 20px;
   flex: 0.2;
   border-radius: 10px;
   text-align: center;

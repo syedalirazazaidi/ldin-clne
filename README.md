@@ -8,3 +8,5 @@ yarn add @material-ui/icons
 
 
 npm install @types/styled-components
+
+![Image of Yaktocat]('./public/images/back.jpg)
