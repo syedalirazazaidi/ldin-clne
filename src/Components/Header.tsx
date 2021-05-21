@@ -26,25 +26,6 @@ function Header() {
         <HeaderOption title="Messages" Icon={MessageIcon} />
         <HeaderOption title="Notifications" Icon={NotificationsIcon} />
         <HeaderOption avatar="/images/mypic.jpg" title="me" />
-        {/* <img src="/images/mypic.jpg" alt="" /> */}
-        {/* <Icon>
-          <HomeIcon />
-          <p>Home</p>
-        </Icon>
-        <Icon>
-          <WorkIcon />
-          <p>Jobs</p>
-        </Icon>
-        <Icon>
-          {" "}
-          <MessageIcon />
-          <p>Messages</p>
-        </Icon>
-        <Icon>
-          <NotificationsIcon />
-          <p>Notifications</p>
-        </Icon>
-        <img src="/images/mypic.jpg" alt="" /> */}
       </IconWrap>
     </Wrap>
   );
@@ -106,20 +87,11 @@ const Wrap = styled.div`
   padding-bottom: 10px;
   z-index: 999;
   width: 100%;
-  /* display: grid;
-  grid-template-columns: 400px auto;
-  grid-gap: 10px;
-  padding: 5px 140px 5px 140px;
-  background-color: white;
- 
-  height: 50px; */
 `;
 
 const IconWrap = styled.div`
   display: flex;
   justify-content: flex-end;
-  /* gap: 50px; */
-  /* margin: 10px 10px; */
   font-size: 10px;
   padding: 5px;
   cursor: pointer;
@@ -128,8 +100,6 @@ const IconWrap = styled.div`
   margin-left: 50px; /* display: flex;
   justify-content: space-between; */
   > img {
-    height: 10px !important;
-    weight: 20px !important;
     border-radius: 50px;
     object-fit: contain;
   }
