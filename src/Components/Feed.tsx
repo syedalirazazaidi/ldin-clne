@@ -5,17 +5,34 @@ import PhotoIcon from "@material-ui/icons/Photo";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
-
+import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import { Avatar } from "@material-ui/core";
+import CommentIcon from "@material-ui/icons/Comment";
+import ShareIcon from "@material-ui/icons/Share";
+import SendIcon from "@material-ui/icons/Send";
+import Posts from "./Posts";
 function Feed() {
+  // const PostAMessages = (e: ChangeEvent<HTMLSelectElement>) => {
+  //   e.preventDefault();
+  //   alert("postded");
+  // };
+  const PostAMessages = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    alert("hi");
+  };
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value, "pppp");
+  };
   return (
     <FeedContainer>
       <FeedWrap>
         <FromWrap>
           <HeaderAvatar />
           <form>
-            <input type="text" placeholder="Start a post" />
-            <button type="submit">Send</button>
+            <input type="text" placeholder="Start a post" onChange={onChange} />
+            <button type="submit" onClick={() => PostAMessages}>
+              Send
+            </button>
           </form>
         </FromWrap>
         <IconWrap>
@@ -29,11 +46,55 @@ function Feed() {
           />
         </IconWrap>
       </FeedWrap>
+      <PostWrap>
+        <PostHeader>
+          <HeaderAvatarPost />
+          <HeadWrap>
+            <p>ALI RAZA</p>
+            <p>This is a Post</p>
+          </HeadWrap>
+        </PostHeader>
+        <p>this is comment session</p>
+        <PostContainer>
+          <Posts
+            Icon={ThumbUpAltIcon}
+            title="like"
+            color="#b2b3b5"
+            font-size="600"
+          />
+          <Posts Icon={CommentIcon} title="Comment" color="#b2b3b5" />
+          <Posts Icon={ShareIcon} title="Share" color="#b2b3b5" />
+          <Posts Icon={SendIcon} title="Send" color="#b2b3b5" />
+        </PostContainer>
+      </PostWrap>
     </FeedContainer>
   );
 }
 
 export default Feed;
+const PostHeader = styled.div`
+  display: flex;
+  padding: 10px;
+`;
+const PostContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`;
+const HeaderAvatarPost = styled(Avatar)``;
+const PostWrap = styled.div`
+  background-color: white;
+  margin-top: 20px;
+  padding: 15px 10px;
+  border-radius: 5px;
+  > p {
+    margin: 5px 20px;
+  }
+`;
+const HeadWrap = styled.div`
+  p {
+    padding: 2px 15px;
+  }
+`;
 const FromWrap = styled.div`
   display: flex;
   align-items: center;
