@@ -1,36 +1,70 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import FeedOptionIcon from "./FeedOption";
 import PhotoIcon from "@material-ui/icons/Photo";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import { Avatar } from "@material-ui/core";
+import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import CommentIcon from "@material-ui/icons/Comment";
 import ShareIcon from "@material-ui/icons/Share";
 import SendIcon from "@material-ui/icons/Send";
 import Posts from "./Posts";
+import { db } from "../firebase";
+import firebase from "firebase";
+interface dataTypes {
+  name: string;
+  description: string;
+  message: string;
+  photoUrl: string;
+  timestamp: any;
+}
+interface dataTypeswithId {
+  id: string | number;
+  data: dataTypes;
+}
 function Feed() {
-  // const PostAMessages = (e: ChangeEvent<HTMLSelectElement>) => {
-  //   e.preventDefault();
-  //   alert("postded");
-  // };
-  const PostAMessages = (event: React.FormEvent<HTMLFormElement>) => {
+  const [input, setInput] = useState("");
+  const [posts, setPosts] = useState<dataTypeswithId[]>([]);
+  useEffect(() => {
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        setPosts(
+          snapshot.docs.map((doc: any) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+  }, []);
+
+  const PostAMessages = async (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
-    alert("hi");
+    await db.collection("posts").add({
+      name: "aaaaaa",
+      description: "saaaa",
+      message: input,
+      photoUrl: "",
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    setInput("");
   };
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value, "pppp");
-  };
+
   return (
     <FeedContainer>
       <FeedWrap>
         <FromWrap>
           <HeaderAvatar />
           <form>
-            <input type="text" placeholder="Start a post" onChange={onChange} />
-            <button type="submit" onClick={() => PostAMessages}>
+            <input
+              type="text"
+              placeholder="Start a post"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <button type="submit" onClick={PostAMessages}>
               Send
             </button>
           </form>
@@ -56,7 +90,21 @@ function Feed() {
         </PostHeader>
         <p>this is comment session</p>
         <PostContainer>
-          <Posts
+          {posts.map(
+            ({
+              id,
+              data: { name, description, message, photoUrl },
+            }: dataTypeswithId) => (
+              <Posts
+                key={id}
+                name={name}
+                description={description}
+                message={message}
+              />
+            )
+          )}
+
+          {/* <Posts
             Icon={ThumbUpAltIcon}
             title="like"
             color="#b2b3b5"
@@ -64,7 +112,7 @@ function Feed() {
           />
           <Posts Icon={CommentIcon} title="Comment" color="#b2b3b5" />
           <Posts Icon={ShareIcon} title="Share" color="#b2b3b5" />
-          <Posts Icon={SendIcon} title="Send" color="#b2b3b5" />
+          <Posts Icon={SendIcon} title="Send" color="#b2b3b5" /> */}
         </PostContainer>
       </PostWrap>
     </FeedContainer>

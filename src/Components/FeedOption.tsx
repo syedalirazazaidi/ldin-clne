@@ -6,7 +6,7 @@ interface FeedProps {
   color: string;
 }
 function FeedOptionIcon({ title, Icon, color }: FeedProps) {
-  console.log(title, Icon);
+  // console.log(title, Icon);
   return (
     <HeaderWrap>
       {Icon && (
