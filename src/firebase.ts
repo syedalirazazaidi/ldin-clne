@@ -1,6 +1,6 @@
 import firebase from "firebase";
 import "firebase/database";
-// require("dotenv").config();
+require("dotenv").config();
 const firebaseConfig = {
   apiKey: "AIzaSyCcJwRmYZtvpTaNgojKL8Y9_gbf_Vsb-1M",
   authDomain: "lkdenclone.firebaseapp.com",

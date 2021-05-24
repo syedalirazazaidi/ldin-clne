@@ -6,10 +6,6 @@ import YouTubeIcon from "@material-ui/icons/YouTube";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
 import { Avatar } from "@material-ui/core";
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-import CommentIcon from "@material-ui/icons/Comment";
-import ShareIcon from "@material-ui/icons/Share";
-import SendIcon from "@material-ui/icons/Send";
 import Posts from "./Posts";
 import { db } from "../firebase";
 import firebase from "firebase";
@@ -81,14 +77,6 @@ function Feed() {
         </IconWrap>
       </FeedWrap>
       <PostWrap>
-        <PostHeader>
-          <HeaderAvatarPost />
-          <HeadWrap>
-            <p>ALI RAZA</p>
-            <p>This is a Post</p>
-          </HeadWrap>
-        </PostHeader>
-        <p>this is comment session</p>
         <PostContainer>
           {posts.map(
             ({
@@ -103,16 +91,6 @@ function Feed() {
               />
             )
           )}
-
-          {/* <Posts
-            Icon={ThumbUpAltIcon}
-            title="like"
-            color="#b2b3b5"
-            font-size="600"
-          />
-          <Posts Icon={CommentIcon} title="Comment" color="#b2b3b5" />
-          <Posts Icon={ShareIcon} title="Share" color="#b2b3b5" />
-          <Posts Icon={SendIcon} title="Send" color="#b2b3b5" /> */}
         </PostContainer>
       </PostWrap>
     </FeedContainer>
@@ -125,12 +103,11 @@ const PostHeader = styled.div`
   padding: 10px;
 `;
 const PostContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
+  /* display: flex;
+  justify-content: space-evenly; */
 `;
 const HeaderAvatarPost = styled(Avatar)``;
 const PostWrap = styled.div`
-  background-color: white;
   margin-top: 20px;
   padding: 15px 10px;
   border-radius: 5px;
@@ -190,19 +167,4 @@ const FeedContainer = styled.div`
   flex: 0.6;
   margin: 20px 20px;
 `;
-const FormContainer = styled.div`
-  /* 
-  > form > input {
-    flex: 1;
-    height: 20px;
-    width: 650px;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 20px;
-    border-color: lightgray;
-    outline: none;
-  }
-  > form > button {
-    visibility: hidden;
-  } */
-`;
+const FormContainer = styled.div``;
